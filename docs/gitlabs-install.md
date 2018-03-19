@@ -33,9 +33,9 @@ __Mục lục__
 
 [Phần 4: Cấu hình ssh bỏ qua pass giữa active passive](#phan4)
 
-[Phần 5: Phần 5: Cấu hình đồng bộ, chịu lỗi, HA](#phan5)
+[Phần 5: Cấu hình đồng bộ, chịu lỗi, HA](#phan5)
 
-[Phần 6: Phần 6: Qui trình khởi động GitLab](#phan6)
+[Phần 6: Qui trình khởi động GitLab](#phan6)
 
 <a name="phan1"></a>
 ### Phần 1: Cài đặt Gitlab
