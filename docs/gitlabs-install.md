@@ -66,6 +66,10 @@ http://IP
 
 > Tại lần đầu tiên truy cập vào GitLab, ta sẽ phải cấu hình user “root” của hệ thống. Đây là user quản trị toàn bộ hệ thống GitLab.
 
+> User: root
+
+> Pass: <set khi truy cập lần đâu>
+
 ### Phần 2: Cấu hình Keep alive
 > Keepalived là gì : hiểu đơn giản keepalived là phần mền để tạo ra 1 VIP ( Virtual IP - IP ảo ). VIP này đại  diện cho 2 hay nhiều IP thật trên các máy chủ hay các thiết bị. Khi người dùng truy cập vào website hay các ứng dụng sử dụng VIP này. Keepalived sẽ sử dụng các thuật toán để ánh xạ VIP vào những IP thật của các máy chủ, thiết bị
 
