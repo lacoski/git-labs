@@ -25,6 +25,7 @@ Ip tĩnh: 10.200.200.229
 
 ## Cài đặt
 __Mục lục__
+
 [Phần 1: Cài đặt Gitlab](#phan1)
 
 [Phần 2: Cấu hình Keep alive](#phan2)
