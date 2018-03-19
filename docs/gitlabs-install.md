@@ -26,10 +26,15 @@ Ip tĩnh: 10.200.200.229
 ## Cài đặt
 __Mục lục__
 [Phần 1: Cài đặt Gitlab](#phan1)
+
 [Phần 2: Cấu hình Keep alive](#phan2)
+
 [Phần 3: Cấu hình Rsync](#phan3)
+
 [Phần 4: Cấu hình ssh bỏ qua pass giữa active passive](#phan4)
+
 [Phần 5: Phần 5: Cấu hình đồng bộ, chịu lỗi, HA](#phan5)
+
 [Phần 6: Phần 6: Qui trình khởi động GitLab](#phan6)
 
 <a name="phan1"></a>
