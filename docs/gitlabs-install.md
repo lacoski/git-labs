@@ -622,7 +622,7 @@ crontab -e
 ```
 Nội dung
 ```bash
-*/5 * * * * bash /etc/gitlab/check_fail_over.sh
+*/5 * * * * bash /etc/gitlab/check-rsync.sh
 @reboot gitlab-ctl stop
 ```
 Khởi động lại Cron
