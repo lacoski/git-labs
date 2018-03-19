@@ -24,6 +24,15 @@ Ip tĩnh: 10.200.200.229
 > Passive server, chịu lỗi khi Active xảy ra vấn đề
 
 ## Cài đặt
+__Mục lục__
+[Phần 1: Cài đặt Gitlab](#phan1)
+[Phần 2: Cấu hình Keep alive](#phan2)
+[Phần 3: Cấu hình Rsync](#phan3)
+[Phần 4: Cấu hình ssh bỏ qua pass giữa active passive](#phan4)
+[Phần 5: Phần 5: Cấu hình đồng bộ, chịu lỗi, HA](#phan5)
+[Phần 6: Phần 6: Qui trình khởi động GitLab](#phan6)
+
+<a name="phan1"></a>
 ### Phần 1: Cài đặt Gitlab
 #### Bước 1: Cấu hình firewalld
 Trên CentOS, mở port HTTP và SSH vào system firewalld
@@ -70,6 +79,7 @@ http://IP
 
 > Pass: <set khi truy cập lần đâu>
 
+<a name="phan2"></a>
 ### Phần 2: Cấu hình Keep alive
 > Keepalived là gì : hiểu đơn giản keepalived là phần mền để tạo ra 1 VIP ( Virtual IP - IP ảo ). VIP này đại  diện cho 2 hay nhiều IP thật trên các máy chủ hay các thiết bị. Khi người dùng truy cập vào website hay các ứng dụng sử dụng VIP này. Keepalived sẽ sử dụng các thuật toán để ánh xạ VIP vào những IP thật của các máy chủ, thiết bị
 
@@ -209,6 +219,7 @@ systemctl enable keepalived
 systemctl status keepalived
 ```
 
+<a name="phan3"></a>
 ### Phần 3: Cấu hình Rsync
 > (Remote Sync) là một công cụ dùng để sao chép và đồng bộ file/thư mục được sử dụng rộng rãi trong môi trường Linux. Với sự trợ giúp của rsync, bạn có thể đồng bộ dữ liệu trên local hoặc giữa các server với nhau một cách dễ dàng.
 
@@ -267,7 +278,8 @@ systemctl restart rsyncd
 systemctl enable rsyncd
 ```
 
-### Phần 3: Cấu hình ssh bỏ qua pass giữa active passive
+<a name="phan4"></a>
+### Phần 4: Cấu hình ssh bỏ qua pass giữa active passive
 > Hỗ trợ đồng bộ dữ liệu giữa 2 node thông qua script
 
 > Thực hiện trên cả 2 node
@@ -307,7 +319,8 @@ Test kết nối
 ssh remote-host
 ```
 
-### Phần 4: Cấu hình đồng bộ, chịu lỗi, HA
+<a name="phan5"></a>
+### Phần 5: Cấu hình đồng bộ, chịu lỗi, HA
 > Script đồng bộ cho phép dữ liệu tự động đồng bộ giữa Master – Slave và cơ chế chịu lỗi khi gặp sự cố
 
 #### Bước 1: Cấu hình Master
@@ -576,7 +589,7 @@ echo $Message
 logger_func "$Message"
 ```
 
-
+<a name="phan1"></a>
 ### Cấu hình Cron
 > Cron là một tiện ích cho phép thực hiện các tác vụ một cách tự động theo định kỳ, ở chế độ nền của hệ thống. Crontab (CRON TABLE) là một file chứa đựng bảng biểu (schedule) của các entries được chạy.
 
@@ -612,7 +625,8 @@ systemctl restart crond
 systemctl status crond
 ```
 
-### Phần 5: Qui trình khởi động GitLab
+<a name="phan6"></a>
+### Phần 6: Qui trình khởi động GitLab
 > Khởi động đúng theo mô hình, active – service gitlab on, passive – service gitlab off
 
 Tại server Gitlabs:
