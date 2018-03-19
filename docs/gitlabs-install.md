@@ -660,6 +660,6 @@ gitlab-ctl stop
 ```
 
 ### Lưu ý
-> File source trong thư mục `lab/script demo`
+> File source các script trong thư mục `lab/script demo`
 
 > File docs trong thư mục `docs/..`
