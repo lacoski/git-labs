@@ -71,15 +71,17 @@ http://IP
 
 pic![](../images/gitlab-install-1.png)
 
-#### Bước 1: Cài đặt trên Git active
+#### Bước 1: Cài đặt gói keepalived trên Git Active
 Cài đặt gói
 ```
 yum -y install keepalived
 ```
 Cấu hình
 ```
-# vi /etc/keepalived/keepalived.conf
-###
+vi /etc/keepalived/keepalived.conf
+```
+Nội dung
+```
 vrrp_script check_state {
   script “/etc/gitlab/check_state.sh” # verify the pid existance
   interval 2 # check every 2 seconds
@@ -99,10 +101,13 @@ vrrp_instance VI_1 {
   }
 }
 ```
-Script check trạng thái service Gitlabs
+__Script check trạng thái service Gitlabs__
+
+```
+vi /etc/gitlab/check_state.sh
+```
+Nội dung
 ```bash
-# vi /etc/gitlab/check_state.sh
-###
 #!/bin/bash
 ### Server Active check
 WEBSERVER_CHECK=127.0.0.1
@@ -140,7 +145,10 @@ yum -y install keepalived
 ```
 Cấu hình
 ```
-# vi /etc/keepalived/keepalived.conf
+vi /etc/keepalived/keepalived.conf
+```
+Nội dung
+```
 ###
 vrrp_script check_state {
   script “/etc/gitlab/check_state.sh” # verify the pid existance
@@ -202,14 +210,17 @@ systemctl status keepalived
 
 ![](../images/gitlab-install-3.png)
 
-#### Bước 1: Cấu hình tại Master
+#### Bước 1: Cấu hình tại Master Node (Git Active)
 Cài đặt gói
 ```
 yum -y install rsync
 ```
-Cấu hình file main config
+Cấu hình file main rsyncd.conf
 ```
-# vi /etc/rsyncd.conf
+vi /etc/rsyncd.conf
+```
+Nội dung
+```
 ###
 [backup]
 path = /var/opt/gitlab
@@ -226,12 +237,16 @@ systemctl restart rsyncd
 systemctl enable rsyncd
 ```
 
-#### Bước 2: Cấu hình tại Slave
+#### Bước 2: Cấu hình tại Slave (Git Passive)
 Cài đặt gói
 ```
 yum -y install rsync
 ```
-Cấu hình file main config
+Cấu hình file main rsyncd.conf
+```
+vi /etc/rsyncd.conf
+```
+Nội dung
 ```
 [backup]
 path = /var/opt/gitlab
@@ -242,7 +257,7 @@ uid = root
 gid = root
 read only = false
 ```
-Khởi động
+Khởi động service
 ```
 systemctl restart rsyncd
 systemctl enable rsyncd
@@ -250,6 +265,8 @@ systemctl enable rsyncd
 
 ### Phần 3: Cấu hình ssh bỏ qua pass giữa active passive
 > Hỗ trợ đồng bộ dữ liệu giữa 2 node thông qua script
+
+> Thực hiện trên cả 2 node
 
 __Tại cả Master và Agent__
 
@@ -286,7 +303,7 @@ Test kết nối
 ssh remote-host
 ```
 
-### Phần 4: Cấu hình cơ chế đồng bộ, chịu lỗi
+### Phần 4: Cấu hình đồng bộ, chịu lỗi, HA
 > Script đồng bộ cho phép dữ liệu tự động đồng bộ giữa Master – Slave và cơ chế chịu lỗi khi gặp sự cố
 
 #### Bước 1: Cấu hình Master
@@ -555,6 +572,7 @@ echo $Message
 logger_func "$Message"
 ```
 
+
 ### Cấu hình Cron
 > Cron là một tiện ích cho phép thực hiện các tác vụ một cách tự động theo định kỳ, ở chế độ nền của hệ thống. Crontab (CRON TABLE) là một file chứa đựng bảng biểu (schedule) của các entries được chạy.
 
@@ -616,3 +634,8 @@ gitlab-ctl stop
 /var/log/script-gitlabs/sync-passive-active.log
 /var/log/script-gitlabs/rsync.log
 ```
+
+### Lưu ý
+> File source trong thư mục `lab/script demo`
+
+> File docs trong thư mục `docs/..`
