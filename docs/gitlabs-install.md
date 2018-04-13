@@ -62,11 +62,19 @@ sudo systemctl start postfix
 #### Bước 3: Cài đặt Gitlab
 Add gói GitLab repo và cài đặt gói
 ```
+# Bản EE
 curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
+
+# Bản CE
+curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash
 ```
 Cấu hình URL cho thực thi GitLab
 ```
+# Bản EE
 sudo EXTERNAL_URL="http://gitlab.local.com" yum install -y gitlab-ee
+
+# Bản CE
+sudo EXTERNAL_URL="http://gitlab.local.com" yum install -y gitlab-ce
 ```
 
 #### Bước 4: Truy cập giao diện chính
