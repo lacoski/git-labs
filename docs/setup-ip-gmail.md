@@ -82,3 +82,9 @@ irb(main):003:0> Notify.test_email('youremail@email.com', 'Hello World', 'This i
 > Chú ý lỗi xác thực của Google gmail khi không enable tính năng `allow less secure apps`
 
 > Chú ý lỗi xác thực SSL với google, nếu lỗi kiểm tra cấu hình `gitlab_rails['smtp_ca_file'] = "/opt/gitlab/embedded/ssl/cert.pem"`
+
+## Nguồn
+
+https://docs.gitlab.com/omnibus/settings/smtp.html
+
+https://support.google.com/accounts/answer/6010255?hl=vi
